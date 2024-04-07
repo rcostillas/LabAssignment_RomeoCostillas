@@ -1,21 +1,18 @@
 import React from 'react';
-import { useState } from 'react';
-import { View } from 'react-native';
-import ToDoList from './Components/ToDoList';
-import ToDoForm from './Components/ToDoForm';
+import { NavigationContainer } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import HomeScreen from './src/screens/HomeScreen';
+import AboutScreen from './src/screens/AboutScreen';
 
 function App() {
-  const [tasks, setTasks] = useState(['Do Laundry', 'Go to gym', 'Walk dog']);
-
-  const addTask = (task) => {
-    setTasks([...tasks, task]);
-  }
-
+  const Stack = createNativeStackNavigator();
   return (
-    <View>
-      <ToDoList tasks={tasks} />
-      <ToDoForm addTask={addTask} />
-    </View>
+    <NavigationContainer>
+      <Stack.Navigator>
+        <Stack.Screen name="Home" component={HomeScreen} />
+        <Stack.Screen name="About" component={AboutScreen} />
+      </Stack.Navigator>
+    </NavigationContainer>
   );
 }
 export default App;
